@@ -1,7 +1,9 @@
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
-console.log(playerName, playerHealth, playerAttack);
+var playerMoney = 10;
+console.log(playerName, playerHealth, playerAttack, playerMoney);
+
 // Test multiplay values with console;
 
 
@@ -9,13 +11,16 @@ var enemyName = "Roborto";
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-console.log(enemyName, enemyHealth, enemyAttack);
+console.log(enemyName, enemyHealth, enemyAttack);   
 
 var fight = function() {
     //Alert players that they are starting the round
-window.alert("Welcome to Robot Gladiators!");
-
+    window.alert("Welcome to Robot Gladiators!");
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+    console.log(promptFight);
     //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in the 'enemyHealth' variable.
+   if (promptFight === "fight" || prompt === "FIGHT" || prompt === "Fight") {
+    //remove enemy's health by subtracting the amount set in the playerAttack variable
     enemyHealth=enemyHealth - playerAttack;
    if (enemyHealth<enemyHealth + playerAttack) {
         window.alert(playerName + " has attacked " + enemyName);
@@ -47,6 +52,28 @@ window.alert("Welcome to Robot Gladiators!");
     }
     else {
         window.alert(playerName + " still has " + playerHealth + " health left.")
+    }
+    // if player choses to skip 
+    } else if (promptFight === "skip" || promptFight === "SKIP" || promptFight === "Skip") {
+        window.alert(playerName + " has chosen to skip the fight!");
+        // confirm player wants to skip
+        var confirmSkip = window.confirm ("are you sure you'd like to quit?");
+        // if yes (true), leave fight
+        if (confirmSkip) {
+            window.alert(playerName + " has decided to skip this fight. Goodbye!");
+            //subtract money from playerMoney for skipping
+            playerMoney = playerMoney - 2;
+            window.alert(playerName + " has " + playerMoney + " coin(s) remaining.");
+            console.log (
+                playerName + " has " + playerMoney + " coin(s) remaining"
+            )
+        }
+        // if no (false), ask question again by running fihgt () again
+        else {
+            fight();
+        }
+    } else {
+        window.alert("You need to choose a valid option. Try again!")
     }
 };
 
